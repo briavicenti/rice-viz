@@ -1,0 +1,84 @@
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="ricemap.css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700,800,900|Roboto|Slabo+27px" rel="stylesheet">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('upcoming', {'packages':['geochart', 'controls']});
+      google.charts.setOnLoadCallback(drawRegionsMap);
+
+      function drawRegionsMap() {
+
+        var queryString = encodeURIComponent('SELECT A, B, C, D');
+        var query = new google.visualization.Query(
+          'https://docs.google.com/spreadsheets/d/1havEiOOhTIWhn3n4mvWHPBYpT8QRB0SiYvcT3h94YtA/edit#headers=1&tq='+ queryString);
+        query.send(handleSampleDataQueryResponse);
+        }
+
+        function handleSampleDataQueryResponse(response) {
+          if (response.isError()) {
+            alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+          return;
+        }
+
+        var data = response.getDataTable();
+
+        var dashboard = new google.visualization.Dashboard(document.getElementById('dashboard_div')); // make dashboard
+
+        var mapOptions = {
+          'region': 'CN', 
+          'dataMode':'regions', 
+          'resolution': 'provinces', 
+          'colorAxis': {'colors': ['#e0f3db', '#7bccc4', '#4eb3d3', '#2b8cbe', '#0868ac', '#084081']},
+          // 'colorAxis': {'colors': ['#f7fcf0','#e0f3db', '#ccebc5','#a8ddb5', '#7bccc4', '#4eb3d3', '#2b8cbe', '#0868ac', '#084081']},
+          // 'colorAxis': {'colors': ['#fff7fb','#ece2f0', '#d0d1e6','#a6bddb', '#67a9cf', '#3690c0', '#02818a', '#016c59', '#014636']}, blueish purple
+          'backgroundColor': '#d3d3d3',
+          'datalessRegionColor': '#e4e4e4',
+          'defaultColor': '#707070',
+        };
+
+        var sliderOptions = {
+          'filterColumnIndex': 2,
+          ui: {
+            format: {pattern: '####'},
+            label: ''
+          }
+        };
+
+        var slider = new google.visualization.ControlWrapper({
+          'controlType': 'NumberRangeFilter',
+          'containerId': 'slider',
+          'options': sliderOptions
+        });
+
+         var rice_viz = new google.visualization.ChartWrapper({
+          'chartType': 'GeoChart',
+          'containerId': 'rice_viz',
+          'options': mapOptions
+         });
+
+         dashboard.bind(slider, rice_viz);
+
+          var formatter = new google.visualization.PatternFormat('{1}');formatter.format(data, [0, 1]);
+
+          var view = new google.visualization.DataView(data);
+          view.setColumns([0,2,3]);  
+
+          dashboard.draw(view);
+
+
+      }
+    </script>
+  </head>
+  <body>    
+    <center>
+    <div id ="dashboard_div" style="width: 800px; height: 500px;">
+        <center>
+        <h1>Rice Yields in China per 10000 tons, 1996-2015</h1>
+        <div id = "slider" class="sliderClass"></div>
+        <div id="rice_viz" style="margin: 10px;"></div>
+        </center>
+    </div>
+    </center>
+  </body>
+</html>
