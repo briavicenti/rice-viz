@@ -9,7 +9,7 @@
 
       function drawRegionsMap() {
 
-        var queryString = encodeURIComponent('SELECT A, B, C, D');
+        var queryString = encodeURIComponent('SELECT A, B, C, D, E');
         var query = new google.visualization.Query(
           'https://docs.google.com/spreadsheets/d/1havEiOOhTIWhn3n4mvWHPBYpT8QRB0SiYvcT3h94YtA/edit#headers=1&tq='+ queryString);
         query.send(handleSampleDataQueryResponse);
@@ -22,6 +22,8 @@
         }
 
         var data = response.getDataTable();
+
+        data.setColumnProperties(4,{'role':'tooltip'});
 
         var dashboard = new google.visualization.Dashboard(document.getElementById('dashboard_div')); // make dashboard
 
@@ -63,7 +65,7 @@
           var formatter = new google.visualization.PatternFormat('{1}');formatter.format(data, [0, 1]);
 
           var view = new google.visualization.DataView(data);
-          view.setColumns([0,2,3]);  
+          view.setColumns([0,2,3,4]);  
 
           dashboard.draw(view);
 
