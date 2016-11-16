@@ -1,0 +1,100 @@
+body {
+	font-family: Raleway;
+	font-weight: 200;
+}
+
+h1 {
+  color: #000;
+	font-weight: 300;
+  padding-top: 0;
+  margin-top: 0;
+}
+
+.legend {
+  width: auto;
+  height: 30px;
+  padding-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #d3d3d3;
+  background-color: #eeeeee;
+  text-align: center;
+}
+
+.legend > .item {
+  padding-top: 5px;
+  margin-left: 10px;
+  display: inline-block;
+  font-family: Raleway;
+  font-weight: 200;
+  font-size: 90%;
+}
+
+.item > .preview {
+  height: 12px;
+  width: 12px;
+  position: relative;
+  top: 2px;
+  border-radius: 2px;
+  border: 1px solid #000;
+  z-index: 2;
+  display: inline-block;
+}
+
+.item > .gradpreview {
+  background: #4eb3d3; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(-90deg, #7bccc4, #0868ac); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(-90deg, #7bccc4, #0868ac); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(-90deg, #7bccc4, #0868ac); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(-90deg, #7bccc4, #0868ac);
+  width: 24px;
+}
+
+.item > .graypreview {
+  background: ##c0c0c0; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(90deg, #c0c0c0 50%, #d1d1d1 50%); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(90deg, #c0c0c0 50%, #d1d1d1 50%); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(90deg, #c0c0c0 50%, #d1d1d1 50%); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(90deg, #c0c0c0 50%, #d1d1d1 50%);
+  width: 24px;
+
+}
+
+.sliderClass .google-visualization-controls-slider-thumb {
+    background-color: #d3d3d3;
+    border: 1px solid #919191;
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    border-radius: 20px;
+}
+
+.sliderClass .google-visualization-controls-slider-horizontal
+  .google-visualization-controls-slider-thumb {
+  top: 	-6px;
+}
+
+.sliderClass .google-visualization-controls-rangefilter-thumblabel {
+    color: #000;
+    font-weight: 300;
+    margin: 5px;
+}
+
+.sliderClass .google-visualization-controls-slider-handle {
+  position: absolute;
+  background-color: #d3d3d3;
+  opacity: 0.4;
+}
+
+.sliderClass .google-visualization-controls-slider-horizontal {
+  border: 1px solid #d3d3d3;
+  background-color: #fff;
+  width: 300px;
+  height: 10px;
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  position: relative;
+  display: inline-block;
+}
+
